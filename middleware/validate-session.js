@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-var User = require('sequelize').import('../models/user');
+const User = require('../models/user'); // require('sequelize').import('../models/user');
 
 module.exports = function (req, res, next) {
     if (req.method == 'OPTIONS') {
@@ -19,7 +19,6 @@ module.exports = function (req, res, next) {
                         function () {
                             res.status(401).send({ error: "not authorized" });
                         })
-
                 } else {
                     res.status(400).send({ error: "not authorized" })
                 }

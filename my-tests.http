@@ -1,0 +1,105 @@
+get http://localhost:4000
+
+###
+post http://localhost:4000/api/auth/signup
+Content-Type: application/json
+
+{
+  "user": {
+    "full_name": "1111",
+    "username": "1111",
+    "password": "1111",
+    "email": "1111"
+  }
+}
+
+###
+
+get http://localhost:4000/api/auth/signin
+Content-Type: application/json
+
+{
+  "user": {
+    "full_name": "1111",
+    "username": "1111",
+    "password": "1111",
+    "email": "1111"
+  }
+}
+###
+
+get http://localhost:4000/api/game/all
+
+###
+
+get http://localhost:4000/api/game/1
+Content-Type: application/json
+
+{
+  "user": {
+    "id": "1",
+    "full_name": "1111",
+    "username": "1111",
+    "password": "1111",
+    "email": "1111"
+  }
+}
+
+###
+
+post http://localhost:4000/api/game/create
+Content-Type: application/json
+
+{
+  "user": {
+    "id": "1",
+    "full_name": "1111",
+    "username": "1111",
+    "password": "1111",
+    "email": "1111"
+  },
+  "game": {
+    "title": "2",
+    "studio": "3",
+    "esrb_rating": "4",
+    "user_rating": "5",
+    "have_played": "true"
+  }
+}
+
+###
+
+delete http://localhost:4000/api/game/remove/1
+Content-Type: application/json
+
+{
+  "user": {
+    "id": "1",
+    "full_name": "1111",
+    "username": "1111",
+    "password": "1111",
+    "email": "1111"
+  }
+}
+
+###
+
+put http://localhost:4000/api/game/update/2
+Content-Type: application/json
+
+{
+  "user": {
+    "id": "1",
+    "full_name": "1111",
+    "username": "1111",
+    "password": "1111",
+    "email": "1111"
+  },
+  "game": {
+    "title": "11",
+    "studio": "11",
+    "esrb_rating": "11",
+    "user_rating": "1",
+    "have_played": "false"
+  }
+}

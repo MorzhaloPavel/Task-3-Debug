@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
-const {User} = require("../db"); // require('sequelize').import('../models/user');
+const DB = require("../db"); // require('sequelize').import('../models/user');
+
+const User = DB.User
 
 module.exports = function (req, res, next) {
   if (req.method == "OPTIONS") {
@@ -10,7 +12,6 @@ module.exports = function (req, res, next) {
   console.log(sessionToken);
 
   if (!sessionToken) {
-    // было без скобок {}
     return res.status(403).send({ auth: false, message: "No token provided." });
   }
 
@@ -20,12 +21,8 @@ module.exports = function (req, res, next) {
         req.user = user;
         console.log(`user: ${user}`);
         next();
-      });
-      res.status(401).send({ error: "not authorized" });
+      }).catch(() => res.status(401).send({ error: "not authorized" }))
     }
-
     res.status(400).send({ error: "not authorized" });
   });
 };
-
-// убрал многоэтажность

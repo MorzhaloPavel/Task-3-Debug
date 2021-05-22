@@ -1,16 +1,19 @@
 const express = require("express");
 const app = express();
-const db = require("./db");
+const DB = require("./db");
 const userRouter = require("./controllers/usercontroller");
 const gameRouter = require("./controllers/gamecontroller");
 
 
-// db.sync();
+DB.sequelize.sync() // changed
+
+app.use(express.json());   // add json
+
 app.use(require("body-parser"));
 app.use("/api/auth", userRouter);
 app.use(require("./middleware/validate-session"));
 app.use("/api/game", gameRouter);
-app.listen(function () {
+app.listen(4000, () => {
   console.log("App is listening on 4000");
 });
 

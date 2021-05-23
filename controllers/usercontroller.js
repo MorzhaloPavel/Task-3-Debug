@@ -11,19 +11,18 @@ router.post("/signup", (req, res) => {
     username: req.body.user.username,
     passwordHash: bcrypt.hashSync(req.body.user.password, 10),   // ошибка названии  passwordhash
     email: req.body.user.email
-  }).then( (data) => {
-    const user = {id: data.id, full_name: data.full_name, username: data.username, passwordHash: data.passwordHash, email: data.email}
+  }).then( (user) => {
     const token = jwt.sign({ id: user.id }, "lets_play_sum_games_man", {
       expiresIn: 60 * 60 * 24,
     });
-    res.status(200).json({
+    res.status(201).json({ ////200
       user: user,
       token: token,
     })
   }).catch(err => res.status(500).send(err.message))
 });
 
-router.get("/signin", (req, res) => { // post
+router.get("/signin", (req, res) => {
   User.findOne({ where: { username: req.body.user.username } }).then((user) => {
     if (!user) return res.sendStatus(400)
     bcrypt.compare(
@@ -33,7 +32,7 @@ router.get("/signin", (req, res) => { // post
         const token = jwt.sign({ id: user.id }, "lets_play_sum_games_man", {
           expiresIn: 60 * 60 * 24,
         });
-          res.json({
+          res.status(200).json({ ///status
           user: user,
           message: "Successfully authenticated.",
           sessionToken: token,

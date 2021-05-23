@@ -8,8 +8,6 @@ const gameRouter = require("./controllers/gamecontroller");
 DB.sequelize.sync() // changed
 
 app.use(express.json());   // add json
-
-app.use(require("body-parser"));
 app.use("/api/auth", userRouter);
 app.use(require("./middleware/validate-session"));
 app.use("/api/game", gameRouter);

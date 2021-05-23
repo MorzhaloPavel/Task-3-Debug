@@ -5,9 +5,9 @@ const userRouter = require("./controllers/usercontroller");
 const gameRouter = require("./controllers/gamecontroller");
 
 
-DB.sequelize.sync() // changed
+DB.sequelize.sync()
 
-app.use(express.json());   // add json
+app.use(express.json());
 app.use("/api/auth", userRouter);
 app.use(require("./middleware/validate-session"));
 app.use("/api/game", gameRouter);
